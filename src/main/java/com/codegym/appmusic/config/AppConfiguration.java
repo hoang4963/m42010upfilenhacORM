@@ -133,12 +133,12 @@ public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAwa
 
 
     @Bean
-    public ISongRepository studentRepository() {
+    public ISongRepository songRepository() {
         return new SongRepository();
     }
 
     @Bean
-    public ISongService studentService(){
+    public ISongService songService(){
         return new SongService();
     }
 }
