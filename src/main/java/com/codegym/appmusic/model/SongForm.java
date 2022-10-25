@@ -9,27 +9,27 @@ import javax.validation.constraints.Size;
 public class SongForm {
     private int id;
     @NotEmpty
-    @Size(min = 2, max = 300)
+    @Pattern(regexp="(^$|[A-Za-z]{2,500})")
     private String author;
     @NotEmpty
-    @Size(min = 2, max = 800)
+    @Pattern(regexp="(^$|[A-Za-z0-9]{2,800})")
     private String name;
     @NotEmpty
-    @Size(min = 2, max = 1000)
+    @Pattern(regexp="(^$|[A-Za-z,]{2,1000})")
     private String category;
     private MultipartFile file;
 
     public SongForm() {
     }
 
-    public SongForm(@NotEmpty  @Size(min = 2, max = 300) String author,@NotEmpty @Size(min = 2, max = 800)  String name, @NotEmpty @Size(min = 2, max = 1000) String category, MultipartFile file) {
+    public SongForm(@NotEmpty  @Pattern(regexp="(^$|[A-Za-z]{2,500})") String author,@NotEmpty @Pattern(regexp="(^$|[A-Za-z0-9]{2,800})")  String name, @NotEmpty @Pattern(regexp="(^$|[A-Za-z,]{2,1000})") String category, MultipartFile file) {
         this.author = author;
         this.name = name;
         this.category = category;
         this.file = file;
     }
 
-    public SongForm(int id,@NotEmpty  @Size(min = 2, max = 300) String author,@NotEmpty  @Size(min = 2, max = 800)  String name, @NotEmpty @Size(min = 2, max = 1000) String category, MultipartFile file) {
+    public SongForm(int id,@NotEmpty  @Pattern(regexp="(^$|[A-Za-z]{2,500})") String author,@NotEmpty  @Pattern(regexp="(^$|[A-Za-z0-9]{2,800})")  String name, @NotEmpty @Pattern(regexp="(^$|[A-Za-z,]{2,1000})") String category, MultipartFile file) {
         this.id = id;
         this.author = author;
         this.name = name;
@@ -49,7 +49,7 @@ public class SongForm {
         return author;
     }
 
-    public void setAuthor(@NotEmpty @Pattern(regexp = "[^A-Za-z]")  @Size(min = 5, max = 300) String author) {
+    public void setAuthor(@NotEmpty @Pattern(regexp="(^$|[A-Za-z]{2,500})") String author) {
         this.author = author;
     }
 
@@ -57,7 +57,7 @@ public class SongForm {
         return name;
     }
 
-    public void setName(@NotEmpty @Pattern(regexp = "[A-Za-z0-9]") @Size(min = 5, max = 800) String name) {
+    public void setName(@NotEmpty @Pattern(regexp="(^$|[A-Za-z0-9]{2,800})") String name) {
         this.name = name;
     }
 
@@ -65,7 +65,7 @@ public class SongForm {
         return category;
     }
 
-    public void setCategory( @NotEmpty @Pattern(regexp = "[A-Za-z,]") @Size(min = 5, max = 1000) String category) {
+    public void setCategory( @NotEmpty @Pattern(regexp="(^$|[A-Za-z,]{2,1000})") String category) {
         this.category = category;
     }
 
