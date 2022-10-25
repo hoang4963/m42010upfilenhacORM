@@ -16,6 +16,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -39,6 +40,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan("com.codegym.appmusic.controller")
 @PropertySource("classpath:upload_file.properties")
+
 public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAware {
 
     @Value("${file-upload}")

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -43,7 +45,13 @@ public class SongController {
         return modelAndView;
     }
     @PostMapping("/create")
-    public ModelAndView createSong(@ModelAttribute SongForm songForm){
+    public ModelAndView createSong(@Valid @ModelAttribute SongForm songForm, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            ModelAndView modelAndView = new ModelAndView("/song/create");
+            modelAndView.addObject("songForm", new SongForm());
+            modelAndView.addObject("message","Error");
+            return modelAndView;
+        }
         MultipartFile multipartFile = songForm.getFile();
         String fileName = multipartFile.getOriginalFilename();
         ModelAndView modelAndView;
